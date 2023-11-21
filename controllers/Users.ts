@@ -11,3 +11,16 @@ export const getUsers = async (req: Request, res: Response) => {
         users
     })
 }
+
+export const createUser = async (req: Request, res: Response) => {
+    const userData: IUsuario = req.body;
+
+    const usuario = new Usuario(userData)
+
+    await usuario.save()
+
+    res.json({
+        msj: "Todo ok",
+        usuario
+    })
+}

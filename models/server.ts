@@ -1,6 +1,6 @@
 import express, { Express } from "express"
-
 import { contectarBaseDatos } from "../baseDatos/configBD";
+import router from "../routes/usersRoutes";
 
 export class Server {
 
@@ -9,10 +9,20 @@ export class Server {
     constructor(){
         this.app = express();
         this.conectaBD();
+        this.middlewares();
+        this.routes();
     }
 
     async conectaBD(): Promise<void>{
         await contectarBaseDatos()
+    }
+
+    middlewares(): void {
+        this.app.use(express.json())
+    }
+
+    routes(): void {
+        this.app.use('/usersRoutes', router)
     }
 
     listen(): void {

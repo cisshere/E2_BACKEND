@@ -3,7 +3,6 @@ import { Model, model, Schema } from "mongoose";
 export interface IUsuario {
     user: string;
     nombre: string;
-    dni: number;
     producto: string;
     precioProducto: number;
     estado: boolean;
@@ -18,11 +17,6 @@ const usuarioSchema =  new Schema<IUsuario>({
     nombre: {
         type: String,
         required: true
-    },
-    dni: {
-        type: Number,
-        required: true,
-        unique: true
     },
     producto: {
         type: String,
