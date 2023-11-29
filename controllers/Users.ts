@@ -1,26 +1,26 @@
 import { Request, Response } from "express";
 
-import Usuario, {IUsuario} from "../models/usuarioDatos";
+import Usuario, { IUsuario } from "../models/usuarioDatos";
 
 export const getUsers = async (req: Request, res: Response) => {
-    const condicion = { estado: true}
+  const condicion = { estado: true };
 
-    const users = await Usuario.find(condicion)
+  const users = await Usuario.find(condicion);
 
-    res.json({
-        users
-    })
-}
+  res.json({
+    users,
+  });
+};
 
 export const createUser = async (req: Request, res: Response) => {
-    const userData: IUsuario = req.body;
+  const userData: IUsuario = req.body;
 
-    const usuario = new Usuario(userData)
+  const usuario = new Usuario(userData);
 
-    await usuario.save()
+  await usuario.save();
 
-    res.json({
-        msj: "Todo ok",
-        usuario
-    })
-}
+  res.json({
+    msj: "Todo ok",
+    usuario,
+  });
+};
